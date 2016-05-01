@@ -3,6 +3,9 @@
 from flask import Flask
 from flask import redirect, render_template, request
 
+import argparse
+import os
+
 BASE_APP_PATH = os.path.dirname(os.path.realpath(__name__))
 
 app = Flask(__name__)
@@ -11,7 +14,6 @@ app.secret_key = "secret"
 # Homepage
 @app.route("/")
 def index():
-  user = session.get("user", None)
   return render_template("index.html")
 
 if __name__ == "__main__":
