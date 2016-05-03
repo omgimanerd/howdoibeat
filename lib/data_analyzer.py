@@ -14,8 +14,7 @@ class DataAnalyzer():
 
     @staticmethod
     def create():
-        with open("./static/champions.json") as champions_file:
-            champions = json.loads(champions_file.read())
+        champions = RiotApi.get_champions()
         return DataAnalyzer({
             "champions": champions
         })
