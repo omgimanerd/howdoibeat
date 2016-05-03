@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source ./env/bin/activate
-export RIOT_API_KEY="601099b3-913f-421f-8309-c9a9dfddce94"
-export PYTHONWARNINGS="ignore:Unverified HTTPS request"
