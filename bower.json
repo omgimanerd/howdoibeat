@@ -1,0 +1,7 @@
+{
+  "name": "howdoibeat",
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0"
+  }
+}
