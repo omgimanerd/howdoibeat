@@ -1,0 +1,32 @@
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.carousel-indicators li {
+    text-indent: 0;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 25px;
+    background-color: transparent !important;
+    border: none;
+    margin: 0;
+    margin-right: 5px !important;
+}
