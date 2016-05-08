@@ -30,3 +30,13 @@
     margin: 0;
     margin-right: 5px !important;
 }
+
+.caption-mastery {
+    bottom: 60px;
+}
+
+@media screen and (min-width: 768px) {
+    .caption-mastery {
+        bottom: 100px;
+    }
+}

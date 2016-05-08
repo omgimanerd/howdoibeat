@@ -94,17 +94,25 @@
               <li data-target="#myCarousel" data-slide-to="1"></li>
               <li data-target="#myCarousel" data-slide-to="2"><img src="http://static.eclypsia.com/images/lol/champions/Akali_Splash_0.jpg" class="img-circle" alt="Cinque Terre" width="50" height="50"> </li>
               <li data-target="#myCarousel" data-slide-to="3"></li>-->
-                <li data-target="#myCarousel" ng-repeat="data in beatdata.slice(0,10) track by $index" data-slide-to="{[$index]}" class="active"><img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[data.champion.key]}.png" class="img-circle" width="50" height="50"> </li>
+                <li data-target="#myCarousel" ng-repeat="data in beatdata.mastery.slice(0,10) track by $index" data-slide-to="{[$index]}" class="active"><img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[data.champion.key]}.png" class="img-circle" width="50" height="50"> </li>
             </ol>
         
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
               <div class="item active">
-                <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{[beatdata[0].champion.key]}_0.jpg">
+                <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{[beatdata.mastery[0].champion.key]}_0.jpg">
+                <div class="carousel-caption caption-mastery">
+                    <h3>Mastery Level: {[beatdata.mastery[0].championLevel]}</h3>
+                    <p>Highest Grade: {[beatdata.mastery[0].highestGrade]}</p>
+                </div>
               </div>
         
-              <div class="item" ng-repeat="data in beatdata.slice(1,10) track by $index">
+              <div class="item" ng-repeat="data in beatdata.mastery.slice(1,10) track by $index">
                 <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{[data.champion.key]}_0.jpg">
+                <div class="carousel-caption caption-mastery">
+                    <h3>Mastery Level: {[data.championLevel]}</h3>
+                    <p>Highest Grade: {[data.highestGrade]}</p>
+                </div>
               </div>
             
             </div>
