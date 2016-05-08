@@ -14,7 +14,9 @@ angular.module("howdoibeat", ['ngCookies'])
     $scope.page.firstname = 'hi';
     $rootScope.address = '';
     $scope.beatdata = {};
-    $http.post ('/leotam1234', {}).
+    $scope.summoner={};
+    $scope.fetchdata = function(){
+        $http.post ('/'+$scope.summoner.name, {}).
           success(function(data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available
@@ -32,4 +34,6 @@ angular.module("howdoibeat", ['ngCookies'])
             console.log(data);
             console.log (status);
           });
+    }
+    //$scope.fetchdata('leotam1234');
 });
