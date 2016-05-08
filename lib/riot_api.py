@@ -3,6 +3,8 @@
 # handles all errors, such as rate limiting.
 # Author: alvin.lin.dev@gmail.com (Alvin Lin)
 
+from util import Util
+
 import json
 import os
 import requests
@@ -58,4 +60,6 @@ class RiotApi():
         return mastery
 
 if __name__ == "__main__":
-    print RiotApi.get_summoner_id("asasdhe9hr")
+    with open("champions.json", "w") as f:
+        f.write(Util.json_dump(RiotApi.get_champions()))
+
