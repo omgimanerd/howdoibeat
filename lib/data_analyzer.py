@@ -29,6 +29,7 @@ class DataAnalyzer():
         for champion in mastery:
             champion_info = self.static_data["champions"][str(
                 champion["championId"])]
+            champion["champion"] = champion_info
             for tag in champion_info["tags"]:
                 if tag in main_role:
                     main_role[tag] += champion["championPoints"]
