@@ -38,7 +38,8 @@ class RiotApi():
         request_path = "/api/lol/static-data/na/v1.2/champion"
         request_params = {
             "dataById": True,
-            "api_key": RiotApi.get_api_key()
+            "api_key": RiotApi.get_api_key(),
+            "champData": "tags"
         }
         champions = RiotApi.get(request_path, request_params)
         return champions.get("data")
@@ -62,4 +63,3 @@ class RiotApi():
 if __name__ == "__main__":
     with open("champions.json", "w") as f:
         f.write(Util.json_dump(RiotApi.get_champions()))
-

@@ -20,15 +20,24 @@ class DataAnalyzer():
         })
 
     def get_summoner_mastery_info(self, summoner_name):
+        data = {}
         summoner_id = RiotApi.get_summoner_id(summoner_name)
         if not summoner_id:
             return None
         mastery = RiotApi.get_champion_mastery_data(summoner_id)
+        main_role = {}
         for champion in mastery:
-            champion_id = str(champion["championId"])
-            champion["champion"] = self.static_data["champions"][champion_id]
-        return mastery
+            champion_info = self.static_data["champions"][str(
+                champion["championId"])]
+            for tag in champion_info["tags"]:
+                if tag in main_role:
+                    main_role[tag] += champion["championPoints"]
+                else:
+                    main_role[tag] = champion["championPoints"]
+        data["mastery"] = mastery
+        data["main_role"] = sorted(main_role, key=main_role.get)[::-1]
+        return data
 
 if __name__ == "__main__":
     d = DataAnalyzer.create()
-    print Util.json_dump(d.get_summoner_mastery_info("omgimanerd"))
+    print d.get_summoner_mastery_info("omgimanerd")
