@@ -49,7 +49,7 @@ class RiotApi():
     @staticmethod
     @cache
     def get_summoner_id(summoner_name):
-        summoner_name = summoner_name.lower()
+        summoner_name = summoner_name.replace(" ", "").lower()
         path = "/api/lol/na/v1.4/summoner/by-name/%s" % (summoner_name)
         params = { "api_key": RiotApi.get_api_key() }
         summoner = RiotApi.get(path, params)
@@ -76,6 +76,6 @@ class RiotApi():
         return current_game_data
 
 if __name__ == "__main__":
-    id = RiotApi.get_summoner_id("DarkFrostTemplar")
+    id = RiotApi.get_summoner_id("ITD Actor")
     print id
     print RiotApi.get_current_game_data(id)

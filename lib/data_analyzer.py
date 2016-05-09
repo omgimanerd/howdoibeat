@@ -50,4 +50,4 @@ class DataAnalyzer():
 
 if __name__ == "__main__":
     d = DataAnalyzer.create()
-    d.get_summoner_mastery_info("DarkFrostTemplar")
+    print Util.json_dump(d.get_summoner_mastery_info("ITD Actor"))
