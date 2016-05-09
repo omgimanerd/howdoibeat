@@ -4,6 +4,7 @@
 # Author: alvin.lin.dev@gmail.com (Alvin Lin)
 
 from util import Util
+from decorators import cache
 
 import json
 import os
@@ -17,6 +18,7 @@ RATE_LIMIT_EXCEEDED_RESPONSE = 429
 class RiotApi():
 
     @staticmethod
+    @cache
     def get_api_key():
         api_key = os.environ.get("RIOT_API_KEY", None)
         if api_key:
@@ -35,31 +37,45 @@ class RiotApi():
 
     @staticmethod
     def get_champions():
-        request_path = "/api/lol/static-data/na/v1.2/champion"
-        request_params = {
+        path = "/api/lol/static-data/na/v1.2/champion"
+        params = {
             "dataById": True,
             "api_key": RiotApi.get_api_key(),
             "champData": "tags"
         }
-        champions = RiotApi.get(request_path, request_params)
+        champions = RiotApi.get(path, params)
         return champions.get("data")
 
     @staticmethod
+    @cache
     def get_summoner_id(summoner_name):
-        request_path = "/api/lol/na/v1.4/summoner/by-name/%s" % (summoner_name)
-        request_params = { "api_key": RiotApi.get_api_key() }
-        summoner = RiotApi.get(request_path, request_params)
+        summoner_name = summoner_name.lower()
+        path = "/api/lol/na/v1.4/summoner/by-name/%s" % (summoner_name)
+        params = { "api_key": RiotApi.get_api_key() }
+        summoner = RiotApi.get(path, params)
         return summoner.get(summoner_name, {}).get("id")
 
     @staticmethod
     def get_champion_mastery_data(summoner_id):
-        request_path = "/championmastery/location/na1/player/%s/champions" % (
+        path = "/championmastery/location/na1/player/%s/champions" % (
             summoner_id
         )
-        request_params = { "api_key": RiotApi.get_api_key() }
-        mastery = RiotApi.get(request_path, request_params)
+        params = { "api_key": RiotApi.get_api_key() }
+        mastery = RiotApi.get(path, params)
         return mastery
 
+    @staticmethod
+    def get_current_game_data(summoner_id):
+        path = "/observer-mode/rest/consumer/getSpectatorGameInfo/NA1/%s" % (
+            summoner_id
+        )
+        params = { "api_key": RiotApi.get_api_key() }
+        current_game_data = RiotApi.get(path, params)
+        if current_game_data.get("status", {}).get("status_code") == 404:
+            return None
+        return current_game_data
+
 if __name__ == "__main__":
-    with open("champions.json", "w") as f:
-        f.write(Util.json_dump(RiotApi.get_champions()))
+    id = RiotApi.get_summoner_id("DarkFrostTemplar")
+    print id
+    print RiotApi.get_current_game_data(id)
