@@ -35,8 +35,16 @@
     bottom: 60px;
 }
 
+.caption-mastery img {
+    width: 180px;
+}
+
 @media screen and (min-width: 768px) {
     .caption-mastery {
         bottom: 100px;
     }
+}
+
+.main_role img {
+    width: 100px;
 }

@@ -87,14 +87,14 @@
 
         <div class="container">
           <br>
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <div id="Carousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
               <!--<li data-target="#myCarousel" data-slide-to="{[$index]}" class="active"><img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[beatdata[0].champion.key]}.png" class="img-circle" alt="Cinque Terre" width="50" height="50"> </li>
               <li data-target="#myCarousel" data-slide-to="1"></li>
               <li data-target="#myCarousel" data-slide-to="2"><img src="http://static.eclypsia.com/images/lol/champions/Akali_Splash_0.jpg" class="img-circle" alt="Cinque Terre" width="50" height="50"> </li>
               <li data-target="#myCarousel" data-slide-to="3"></li>-->
-                <li data-target="#myCarousel" ng-repeat="data in beatdata.mastery.slice(0,10) track by $index" data-slide-to="{[$index]}" class="active"><img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[data.champion.key]}.png" class="img-circle" width="50" height="50"> </li>
+                <li data-target="#Carousel" ng-repeat="data in beatdata.mastery.slice(0,10) track by $index" data-slide-to="{[$index]}" class="active"><img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[data.champion.key]}.png" class="img-circle" width="50" height="50"> </li>
             </ol>
         
             <!-- Wrapper for slides -->
@@ -103,7 +103,13 @@
                 <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{[beatdata.mastery[0].champion.key]}_0.jpg">
                 <div class="carousel-caption caption-mastery">
                     <h3>Mastery Level: {[beatdata.mastery[0].championLevel]}</h3>
-                    <p>Highest Grade: {[beatdata.mastery[0].highestGrade]}</p>
+                    <h4>Highest Grade: {[beatdata.mastery[0].highestGrade]}</h4>
+                    <img ng-if="beatdata.mastery[0].champion.tags[0] == 'Fighter' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/7/7b/Fighter_Large.png/revision/latest?cb=20140907112829" alt="" />
+                    <img ng-if="beatdata.mastery[0].champion.tags[0] == 'Assassin' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/5/59/Assassin_Large.png/revision/latest?cb=20140907112830" alt="" />
+                    <img ng-if="beatdata.mastery[0].champion.tags[0] == 'Mage' " src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/b/b9/Mage_Large.png/revision/latest?cb=20140907112829" alt="" />
+                    <img ng-if="beatdata.mastery[0].champion.tags[0] == 'Tank' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/9/9d/Tank_Large.png/revision/latest?cb=20140907112830" alt="" />
+                    <img ng-if="beatdata.mastery[0].champion.tags[0] == 'Marksman' " src="http://vignette1.wikia.nocookie.net/leagueoflegends/images/5/54/Marksman_Large.png/revision/latest?cb=20140907112830" alt="" />
+                    <img ng-if="beatdata.mastery[0].champion.tags[0] == 'Support' " src="http://vignette4.wikia.nocookie.net/leagueoflegends/images/5/55/Support_Large.png/revision/latest?cb=20140907112831" alt="" />
                 </div>
               </div>
         
@@ -112,17 +118,23 @@
                 <div class="carousel-caption caption-mastery">
                     <h3>Mastery Level: {[data.championLevel]}</h3>
                     <p>Highest Grade: {[data.highestGrade]}</p>
+                    <img ng-if="data.champion.tags[0] == 'Fighter' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/7/7b/Fighter_Large.png/revision/latest?cb=20140907112829" alt="" />
+                    <img ng-if="data.champion.tags[0] == 'Assassin' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/5/59/Assassin_Large.png/revision/latest?cb=20140907112830" alt="" />
+                    <img ng-if="data.champion.tags[0] == 'Mage' " src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/b/b9/Mage_Large.png/revision/latest?cb=20140907112829" alt="" />
+                    <img ng-if="data.champion.tags[0] == 'Tank' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/9/9d/Tank_Large.png/revision/latest?cb=20140907112830" alt="" />
+                    <img ng-if="data.champion.tags[0] == 'Marksman' " src="http://vignette1.wikia.nocookie.net/leagueoflegends/images/5/54/Marksman_Large.png/revision/latest?cb=20140907112830" alt="" />
+                    <img ng-if="data.champion.tags[0] == 'Support' " src="http://vignette4.wikia.nocookie.net/leagueoflegends/images/5/55/Support_Large.png/revision/latest?cb=20140907112831" alt="" />
                 </div>
               </div>
             
             </div>
         
             <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <a class="left carousel-control" href="#Carousel" role="button" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <a class="right carousel-control" href="#Carousel" role="button" data-slide="next">
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
@@ -134,12 +146,19 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-fw"></i> Hi
+                            <i class="fa fa-fw"></i> Main Roles (in descending order)
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-            				<p>:)</p>
-                            <p>:)).</p>
+                            <p ng-repeat="role in beatdata.main_role" class="main_role">
+                                {[role]}
+                                <img ng-if="role == 'Fighter' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/7/7b/Fighter_Large.png/revision/latest?cb=20140907112829" alt="" />
+                                <img ng-if="role == 'Assassin' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/5/59/Assassin_Large.png/revision/latest?cb=20140907112830" alt="" />
+                                <img ng-if="role == 'Mage' " src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/b/b9/Mage_Large.png/revision/latest?cb=20140907112829" alt="" />
+                                <img ng-if="role == 'Tank' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/9/9d/Tank_Large.png/revision/latest?cb=20140907112830" alt="" />
+                                <img ng-if="role == 'Marksman' " src="http://vignette1.wikia.nocookie.net/leagueoflegends/images/5/54/Marksman_Large.png/revision/latest?cb=20140907112830" alt="" />
+                                <img ng-if="role == 'Support' " src="http://vignette4.wikia.nocookie.net/leagueoflegends/images/5/55/Support_Large.png/revision/latest?cb=20140907112831" alt="" />
+                            </p>
                         </div>
                         <!-- /.panel-body -->
                     </div>
