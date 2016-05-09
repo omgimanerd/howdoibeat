@@ -1,3 +1,10 @@
 /env
+/static/angular-route
+/static/angular
+/static/bootstrap-material-design
+/static/bootstrap-sass
+/static/bootstrap
+/static/jquery
+/static/typed.js
 *.pyc
 setup

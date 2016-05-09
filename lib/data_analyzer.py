@@ -37,8 +37,17 @@ class DataAnalyzer():
                     main_role[tag] = champion["championPoints"]
         data["mastery"] = mastery
         data["main_role"] = sorted(main_role, key=main_role.get)[::-1]
+
+        current_game = RiotApi.get_current_game_data(summoner_id)
+        if current_game:
+            players = current_game.get("participants")
+            for player in players:
+                del player["masteries"]
+                del player["runes"]
+                del player["profileIconId"]
+            data["current_game"] = players
         return data
 
 if __name__ == "__main__":
     d = DataAnalyzer.create()
-    print d.get_summoner_mastery_info("omgimanerd")
+    d.get_summoner_mastery_info("DarkFrostTemplar")
