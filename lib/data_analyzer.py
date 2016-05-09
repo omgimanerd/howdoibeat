@@ -19,6 +19,9 @@ class DataAnalyzer():
             "champions": champions
         })
 
+    def get_champion_from_id(self, champion_id):
+        return self.static_data["champions"][str(champion_id)]
+
     def get_summoner_mastery_info(self, summoner_name):
         data = {}
         summoner_id = RiotApi.get_summoner_id(summoner_name)
@@ -27,8 +30,7 @@ class DataAnalyzer():
         mastery = RiotApi.get_champion_mastery_data(summoner_id)
         main_role = {}
         for champion in mastery:
-            champion_info = self.static_data["champions"][str(
-                champion["championId"])]
+            champion_info = self.get_champion_from_id(champion["championId"])
             champion["champion"] = champion_info
             for tag in champion_info["tags"]:
                 if tag in main_role:
@@ -45,9 +47,11 @@ class DataAnalyzer():
                 del player["masteries"]
                 del player["runes"]
                 del player["profileIconId"]
+                player["champion"] = self.get_champion_from_id(
+                    player["championId"])
             data["current_game"] = players
         return data
 
 if __name__ == "__main__":
     d = DataAnalyzer.create()
-    print Util.json_dump(d.get_summoner_mastery_info("ITD Actor"))
+    print Util.json_dump(d.get_summoner_mastery_info("hi im gosu").get("current_game"))
