@@ -70,24 +70,23 @@
         <!--<div ng-include="'nav2.html'"></div>-->
 
         <div id="page-wrapper">
+        <div class="container">
             <div class="row" align="center">
                 <div class="col-md-12">
-                    <h1 class="page-header"><span class="element"></span> <input type="text" ng-model="summoner.name" class="form-control" placeholder="summoner name" aria-describedby="sizing-addon2" style="display:inline-block; width:300px"><a href="javascript:void(0)" ng-click="fetchdata()" class="btn btn-default btn-fab"><i class="material-icons">search</i></a></h1>
+                    <h1 class="page-header"><span class="element"></span> <input type="text" ng-model="summoner.name" class="form-control" placeholder="summoner name" aria-describedby="sizing-addon2" style="display:inline-block; width:300px; margin-right: 1em"><a href="javascript:void(0)" ng-click="fetchdata()" class="btn btn-default btn-fab"><i class="material-icons">search</i></a></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
 		<center>
-		<p>The most mastered champions by this summoner</p>
+		<p>The most mastered champions and roles by this summoner</p>
 		</center>
             </div>
             <!-- /.row -->
 
-
-        <div class="container">
           <br>
-          <div id="Carousel" class="carousel slide" data-ride="carousel">
+          <div id="Carousel" class="carousel slide" data-ride="carousel" style="margin-bottom:2.5em">
             <!-- Indicators -->
             <ol class="carousel-indicators">
               <!--<li data-target="#myCarousel" data-slide-to="{[$index]}" class="active"><img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[beatdata[0].champion.key]}.png" class="img-circle" alt="Cinque Terre" width="50" height="50"> </li>
@@ -117,7 +116,7 @@
                 <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{[data.champion.key]}_0.jpg">
                 <div class="carousel-caption caption-mastery">
                     <h3>Mastery Level: {[data.championLevel]}</h3>
-                    <p>Highest Grade: {[data.highestGrade]}</p>
+                    <h4>Highest Grade: {[data.highestGrade]}</h4>
                     <img ng-if="data.champion.tags[0] == 'Fighter' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/7/7b/Fighter_Large.png/revision/latest?cb=20140907112829" alt="" />
                     <img ng-if="data.champion.tags[0] == 'Assassin' " src="http://vignette2.wikia.nocookie.net/leagueoflegends/images/5/59/Assassin_Large.png/revision/latest?cb=20140907112830" alt="" />
                     <img ng-if="data.champion.tags[0] == 'Mage' " src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/b/b9/Mage_Large.png/revision/latest?cb=20140907112829" alt="" />
@@ -141,11 +140,10 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-        </div>
 
 
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-fw"></i> Main Roles (in descending order)
@@ -169,9 +167,39 @@
                     <!-- /.panel -->
 
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-md-6 -->
+                
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-fw"></i> Current Game
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body row">
+                            <div class="col-md-6 col-sm-6">
+                                <h4>Blue Team</h4>
+                                <p ng-repeat="summoner in beatdata.current_game.slice(0,5)" class="current_game">
+                                    {[summoner.summonerName]}
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[summoner.champion.key]}.png" class="img-circle" width="50" height="50">
+                                </p>
+                                </div>
+                            <div class="col-md-6 col-sm-6">
+                                <h4>Red Team</h4>
+                                <p ng-repeat="summoner in beatdata.current_game.slice(5,10)" class="current_game">
+                                    {[summoner.summonerName]}
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[summoner.champion.key]}.png" class="img-circle" width="50" height="50">
+                                </p>
+                                </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+
+                </div>
+                <!-- /.col-md-6 -->
             </div>
             <!-- /.row -->
+            </div>
         </div>
         <!-- /#page-wrapper -->
 
