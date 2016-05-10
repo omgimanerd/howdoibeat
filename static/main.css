@@ -56,3 +56,33 @@
 .current_game img {
     float: right;
 }
+
+.show {
+    display: block !important;
+}
+
+.load {
+    display: block !important;
+}
+
+.splash {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+
+.splash img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -198px;
+    margin-left: -99px;
+
+}
+
+*{
+  transition: all 0.5s ease;
+}

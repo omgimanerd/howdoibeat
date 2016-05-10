@@ -23,7 +23,7 @@
     <script src="static/bootstrap-material-design/dist/js/material.min.js"></script>
     <script src="static/bootstrap-material-design/dist/js/ripples.min.js"></script>
     
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
     <!-- MetisMenu CSS -->
@@ -61,6 +61,8 @@
 <body ng-app="howdoibeat">
 
     <div id="wrapper" ng-controller="IndexController">
+        
+    <div class="splash" ng-class="{load: loading}"><img src="static/ring.gif"></div>
     
     <!--{[page.firstname]}
     
@@ -84,8 +86,8 @@
 		</center>
             </div>
             <!-- /.row -->
-
           <br>
+          <div ng-class="{show: loaded}" style="display:none">
           <div id="Carousel" class="carousel slide" data-ride="carousel" style="margin-bottom:2.5em">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -203,6 +205,7 @@
                 <!-- /.col-md-6 -->
             </div>
             <!-- /.row -->
+            </div>
             </div>
         </div>
         <!-- /#page-wrapper -->

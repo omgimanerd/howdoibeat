@@ -15,7 +15,10 @@ angular.module("howdoibeat", ['ngCookies'])
     $rootScope.address = '';
     $scope.beatdata = {};
     $scope.summoner={};
+    $scope.loading = false;
+    $scope.loaded = false;
     $scope.fetchdata = function(){
+      $scope.loading = true;
         $http.post ('/'+$scope.summoner.name, {}).
           success(function(data, status, headers, config) {
             // this callback will be called asynchronously
@@ -26,6 +29,8 @@ angular.module("howdoibeat", ['ngCookies'])
             //$cookieStore.put ('oid', data.oid);
             //window.location.href = $rootScope.url+'dash.html'
             $scope.beatdata = data;
+            $scope.loaded = true;
+            $scope.loading = false;
             //console.log ($scope.beatdata[0].championId);
           }).
           error(function(data, status, headers, config) {
@@ -33,6 +38,7 @@ angular.module("howdoibeat", ['ngCookies'])
             // or server returns response with an error status.
             console.log(data);
             console.log (status);
+            $scope.loading = false;
           });
     }
     //$scope.fetchdata('leotam1234');
