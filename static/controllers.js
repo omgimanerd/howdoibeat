@@ -39,6 +39,10 @@ angular.module("howdoibeat", ['ngCookies'])
             console.log(data);
             console.log (status);
             $scope.loading = false;
+            BootstrapDialog.show({
+              title: 'Error occured',
+              message: 'Unforunately :( An error occured, please try it again or refresh the page'
+            });
           });
     }
     //$scope.fetchdata('leotam1234');
