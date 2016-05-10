@@ -180,6 +180,8 @@
                                 <h4>Blue Team</h4>
                                 <p ng-repeat="summoner in beatdata.current_game.slice(0,5)" class="current_game">
                                     {[summoner.summonerName]}
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/spell/{[summoner.spell2.key]}.png" class="img-circle" width="40" height="40">
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/spell/{[summoner.spell1.key]}.png" class="img-circle" width="40" height="40">
                                     <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[summoner.champion.key]}.png" class="img-circle" width="50" height="50">
                                 </p>
                                 </div>
@@ -187,6 +189,8 @@
                                 <h4>Red Team</h4>
                                 <p ng-repeat="summoner in beatdata.current_game.slice(5,10)" class="current_game">
                                     {[summoner.summonerName]}
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/spell/{[summoner.spell2.key]}.png" class="img-circle" width="40" height="40">
+                                    <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/spell/{[summoner.spell1.key]}.png" class="img-circle" width="40" height="40">
                                     <img src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{[summoner.champion.key]}.png" class="img-circle" width="50" height="50">
                                 </p>
                                 </div>
