@@ -53,7 +53,8 @@ class DataAnalyzer():
                 player["champion"] = self.champions[str(player["championId"])]
                 player["spell1"] = self.summoner_spells[str(player["spell1Id"])]
                 player["spell2"] = self.summoner_spells[str(player["spell2Id"])]
-        return current_game
+            return players
+        return None
 
 if __name__ == "__main__":
     d = DataAnalyzer.create()
