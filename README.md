@@ -6,7 +6,7 @@ user to determine their mastery. It will approximate your likelihood of beating
 the player given their champion history, mastery, and overall experience with
 the role. It will also take into account the current matchup if the player
 is in game.  
-Hosted at ...
+Hosted at [howdoibeat.sytes.net](http://howdoibeat.sytes.net)
 
 # Setup
 Virtual Environment and Dependency Setup

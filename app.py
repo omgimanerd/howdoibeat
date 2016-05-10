@@ -27,12 +27,19 @@ def query_summoner(summoner_name):
     if request.method == "GET":
         return render_template("index.html", summoner=summoner_name)
     else:
-        return Util.json_dump(
-            data_analyzer.get_summoner_mastery_info(summoner_name))
+        mastery_data = data_analyzer.get_summoner_mastery_info(summoner_name)
+        main_roles = data_analyzer.get_main_role_analysis(mastery_data)
+        current_game_data = data_analyzer.get_current_game_data(summoner_name)
+        return Util.json_dump({
+            "mastery": mastery_data,
+            "main_role": main_roles,
+            "current_game": current_game_data
+        })
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Runs the server.")
     parser.add_argument("--debug", default=False, action="store_true")
     args = parser.parse_args()
-    app.debug = "debug" in args
+    app.debug = args.debug
+    print app.debug
     app.run()

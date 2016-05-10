@@ -86,4 +86,4 @@ class RiotApi():
         return current_game_data
 
 if __name__ == "__main__":
-    print RiotApi.get_summoner_spells()
+    print RiotApi.get_summoner_id("leotam1234")
