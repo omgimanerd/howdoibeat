@@ -21,13 +21,15 @@ class DataAnalyzer():
         )
 
     def get_summoner_mastery_info(self, summoner_name):
-        data = {}
         summoner_id = RiotApi.get_summoner_id(summoner_name)
         if not summoner_id:
             return None
         mastery = RiotApi.get_champion_mastery_data(summoner_id)
+        return mastery
+
+    def get_main_role_analysis(self, mastery_data):
         main_role = {}
-        for champion in mastery:
+        for champion in mastery_data:
             champion_info = self.champions[str(champion["championId"])]
             champion["champion"] = champion_info
             for tag in champion_info["tags"]:
@@ -35,9 +37,12 @@ class DataAnalyzer():
                     main_role[tag] += champion["championPoints"]
                 else:
                     main_role[tag] = champion["championPoints"]
-        data["mastery"] = mastery
-        data["main_role"] = sorted(main_role, key=main_role.get)[::-1]
+        return sorted(main_role, key=main_role.get)[::-1]
 
+    def get_current_game_data(self, summoner_name):
+        summoner_id = RiotApi.get_summoner_id(summoner_name)
+        if not summoner_id:
+            return None
         current_game = RiotApi.get_current_game_data(summoner_id)
         if current_game:
             players = current_game.get("participants")
@@ -45,13 +50,15 @@ class DataAnalyzer():
                 del player["masteries"]
                 del player["runes"]
                 del player["profileIconId"]
-                player["champion"] = self.champions[str(champion["championId"])]
+                player["champion"] = self.champions[str(player["championId"])]
                 player["spell1"] = self.summoner_spells[str(player["spell1Id"])]
                 player["spell2"] = self.summoner_spells[str(player["spell2Id"])]
-            data["current_game"] = players
-        return data
+        return current_game
 
 if __name__ == "__main__":
     d = DataAnalyzer.create()
-    print Util.json_dump(d.get_summoner_mastery_info("hawaii funk").get(
-        "current_game"))
+    mastery = d.get_summoner_mastery_info("omgimanerd")
+    roles = d.get_main_role_analysis(mastery)
+    print roles
+    cgame = d.get_current_game_data("Voyboy")
+    print cgame
