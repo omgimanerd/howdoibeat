@@ -40,5 +40,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Runs the server.")
     parser.add_argument("--debug", default=False, action="store_true")
     args = parser.parse_args()
-    app.debug = "debug" in args
+    app.debug = args.debug
+    print app.debug
     app.run()
