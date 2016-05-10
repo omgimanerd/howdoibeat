@@ -40,11 +40,21 @@ class RiotApi():
         path = "/api/lol/static-data/na/v1.2/champion"
         params = {
             "dataById": True,
-            "api_key": RiotApi.get_api_key(),
-            "champData": "tags"
+            "champData": "tags",
+            "api_key": RiotApi.get_api_key()
         }
         champions = RiotApi.get(path, params)
         return champions.get("data")
+
+    @staticmethod
+    def get_summoner_spells():
+        path = "/api/lol/static-data/na/v1.2/summoner-spell"
+        params = {
+            "dataById": True,
+            "api_key": RiotApi.get_api_key()
+        }
+        spells = RiotApi.get(path, params)
+        return spells.get("data")
 
     @staticmethod
     @cache
@@ -76,6 +86,4 @@ class RiotApi():
         return current_game_data
 
 if __name__ == "__main__":
-    id = RiotApi.get_summoner_id("ITD Actor")
-    print id
-    print RiotApi.get_current_game_data(id)
+    print RiotApi.get_summoner_spells()
